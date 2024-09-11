@@ -2,9 +2,9 @@ import tabula
 import pandas as pd
 
 pdf_path = "ic2023.pdf"
-fileName = "incisoA"
+fileName = "incisoB"
 
-dfs = tabula.read_pdf(pdf_path, pages='53-56', multiple_tables=True)
+dfs = tabula.read_pdf(pdf_path, pages='57-66', multiple_tables=True)
 
 # Lista para guardar los nombres de los archivos CSV generados
 csv_files = []

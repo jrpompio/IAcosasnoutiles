@@ -30,6 +30,15 @@ for k in k_range:
     kmeans.fit(X)
     sse.append(kmeans.inertia_)
 
+# Graficar el método del codo
+plt.figure(figsize=(8, 6))
+plt.plot(k_range, sse, marker='o')
+plt.title('Método del Codo para Determinar el Número Óptimo de Clusters')
+plt.xlabel('Número de clusters (K)')
+plt.ylabel('Suma de los errores cuadráticos (SSE)')
+plt.grid(True)
+plt.show()
+
 # Método del codo: cálculo de la distancia perpendicular
 x1, y1 = 1, sse[0]  # Punto inicial (K=1, SSE para K=1)
 x2, y2 = len(sse), sse[-1]  # Punto final (K máximo, SSE para K máximo)
@@ -46,17 +55,7 @@ for i in range(len(sse)):
 
 # Seleccionar el K con la máxima distancia
 k_selected = distancias.index(max(distancias)) + 1
-
-# Graficar el método del codo con la línea vertical en K seleccionado
-plt.figure(figsize=(8, 6))
-plt.plot(k_range, sse, marker='o')
-plt.axvline(x=k_selected, color='r', linestyle='--', label=f'K óptimo = {k_selected}')
-plt.title('Método del Codo para Determinar el Número Óptimo de Clusters')
-plt.xlabel('Número de clusters (K)')
-plt.ylabel('Suma de los errores cuadráticos (SSE)')
-plt.legend()
-plt.grid(True)
-plt.show()
+print(f'El número óptimo de clusters seleccionado según el método del codo es: K = {k_selected}')
 
 # Crear el modelo KMeans con el valor óptimo de K
 kmeans = KMeans(n_clusters=k_selected, random_state=0)
